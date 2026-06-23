@@ -24,7 +24,9 @@ class AskControllerTest {
 
     @BeforeEach
     void setUp() {
-        mvc = MockMvcBuilders.standaloneSetup(new AskController(ragService)).build();
+        mvc = MockMvcBuilders.standaloneSetup(new AskController(ragService))
+                .setControllerAdvice(new GlobalExceptionHandler())
+                .build();
     }
 
     @Test
@@ -39,5 +41,13 @@ class AskControllerTest {
                 .andExpect(jsonPath("$.answer").value("La norma exige cifrado."))
                 .andExpect(jsonPath("$.citations[0].source").value("norma.pdf"))
                 .andExpect(jsonPath("$.citations[0].page").value(2));
+    }
+
+    @Test
+    void postAsk_cuandoLaPreguntaEstaVacia_responde400() throws Exception {
+        mvc.perform(post("/ask")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"question\":\"\"}"))
+                .andExpect(status().isBadRequest());
     }
 }

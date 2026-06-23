@@ -1,5 +1,6 @@
 package cl.brodriguez.compliancerag.web;
 
+import cl.brodriguez.compliancerag.ingestion.DocumentParseException;
 import cl.brodriguez.compliancerag.ingestion.IngestionService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,6 +12,7 @@ import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -26,7 +28,9 @@ class DocumentControllerTest {
 
     @BeforeEach
     void setUp() {
-        mvc = MockMvcBuilders.standaloneSetup(new DocumentController(ingestionService)).build();
+        mvc = MockMvcBuilders.standaloneSetup(new DocumentController(ingestionService))
+                .setControllerAdvice(new GlobalExceptionHandler())
+                .build();
     }
 
     @Test
@@ -48,5 +52,17 @@ class DocumentControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0]").value("norma.pdf"))
                 .andExpect(jsonPath("$[1]").value("ley.pdf"));
+    }
+
+    @Test
+    void postDocuments_cuandoElDocumentoNoSePuedeProcesar_responde400() throws Exception {
+        doThrow(new DocumentParseException("PDF corrupto", new RuntimeException()))
+                .when(ingestionService).ingest(eq("malo.pdf"), any());
+        MockMultipartFile file = new MockMultipartFile(
+                "file", "malo.pdf", "application/pdf", "x".getBytes());
+
+        mvc.perform(multipart("/documents").file(file))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.error").exists());
     }
 }
