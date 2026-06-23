@@ -2,6 +2,13 @@ spring:
   application:
     name: compliance-rag
 
+  # Por defecto NO usamos Postgres: el vector store es en memoria.
+  # El perfil "pg" activa pgvector (ver application-pg.yml).
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.jdbc.autoconfigure.DataSourceAutoConfiguration
+      - org.springframework.ai.vectorstore.pgvector.autoconfigure.PgVectorStoreAutoConfiguration
+
   # Límite de subida de PDFs
   servlet:
     multipart:

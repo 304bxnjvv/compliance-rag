@@ -1,0 +1,18 @@
+# Perfil "pg": usa Postgres + pgvector como vector store real.
+# Activar con:  SPRING_PROFILES_ACTIVE=pg   (o ejecutando ./run-pg.ps1)
+spring:
+  # Re-habilita las autoconfiguraciones que el perfil por defecto excluye.
+  autoconfigure:
+    exclude: []
+
+  datasource:
+    url: ${POSTGRES_URL}
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
+
+  ai:
+    vectorstore:
+      pgvector:
+        initialize-schema: true   # crea la tabla del vector store si no existe
+        index-type: NONE          # sin límite de dimensiones (gemini-embedding-001 = 3072)
+        dimensions: 3072
