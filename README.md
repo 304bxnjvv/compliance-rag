@@ -112,6 +112,7 @@ mvn spring-boot:run
 
 La API queda disponible en **http://localhost:8080**.
 
+🖥️ **Interfaz web:** abre **http://localhost:8080** en el navegador — sube documentos y pregunta desde ahí, sin usar `curl`.
 📖 **Documentación interactiva (Swagger UI):** http://localhost:8080/swagger-ui/index.html
 
 **Con vector DB real (Postgres + pgvector):** añade `POSTGRES_URL`, `POSTGRES_USER` y
@@ -120,6 +121,15 @@ extensión `vector` activada) y arranca con `./run-pg.ps1` — activa el perfil 
 pgvector en lugar del store en memoria, sin cambiar nada de la lógica.
 
 ---
+
+## 🐳 Docker
+
+Levanta la app **y** un Postgres con pgvector, todo local, con un solo comando:
+```bash
+docker compose up --build
+```
+Solo necesitas `DEEPSEEK_API_KEY` y `GEMINI_API_KEY` en el `.env`. La app queda en
+`http://localhost:8080` usando pgvector (perfil `pg`), sin instalar nada más.
 
 ## 📡 Uso de la API
 
