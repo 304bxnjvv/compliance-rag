@@ -15,27 +15,27 @@ Estado: ✅ **MVP funcional, probado end-to-end.** Stack: Java 17 · Spring Boot
 - [x] `IngestionService`: orquesta parser → vector store, registra documentos
 - [x] `VectorStoreConfig`: SimpleVectorStore con embeddings de Gemini (`gemini-embedding-001`)
 - [x] Endpoints `POST /documents` y `GET /documents`
-- [x] 7 tests verdes
+- [x] Tests verdes
 - **Hecho:** subes un PDF y queda indexado. ✅ (probado con un PDF real)
 
 ## Fase 2 — RAG / preguntas con citas ✅ (TDD)
 - [x] `RagService`: embedding de la pregunta → top-K → prompt + contexto → DeepSeek
 - [x] Respuesta **con citas** (documento + página)
 - [x] Endpoint `POST /ask`
-- [x] 4 tests (respuesta, contexto en prompt, citas, controller)
+- [x] Tests (respuesta, contexto en prompt, citas, controller)
 - **Hecho:** preguntas algo y responde fundamentado solo en los docs, citando la fuente. ✅ (probado E2E)
 
-## Fase 3 — Pulido y presentación 👈 siguiente
-- [ ] Sub-chunking de páginas largas (TokenTextSplitter)
+## Fase 3 — Pulido y presentación 🚧 (casi)
+- [x] README profesional con demo, arquitectura, uso y troubleshooting
+- [x] Manejo de errores (`@RestControllerAdvice`): PDF inválido → 400 limpio
+- [x] Validación de entrada (`@NotBlank` en /ask): pregunta vacía → 400
+- [x] Swagger / OpenAPI (springdoc 3) → `/swagger-ui`
 - [ ] Persistir el índice a archivo (no re-indexar al reiniciar)
-- [ ] Manejo de errores (`@ControllerAdvice`) + validaciones
-- [ ] Swagger / OpenAPI
-- [ ] README profesional con diagrama y ejemplos
-- **Hecho cuando:** alguien clona, sigue el README y lo corre sin ayuda.
+- [ ] Sub-chunking de páginas largas (TokenTextSplitter)
 
 ## Fase 4 — pgvector real (post-MVP)
 - [ ] Migrar a Supabase (Postgres + pgvector)
 - **Hecho cuando:** el índice vive en un vector DB real.
 
 ---
-**Tests: 11 verdes** · Probado end-to-end con DeepSeek + Gemini.
+**Tests: 13 verdes** · Probado end-to-end con DeepSeek + Gemini · Swagger UI activo.
