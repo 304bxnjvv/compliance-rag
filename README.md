@@ -1,6 +1,6 @@
 # 🛡️ compliance-rag — Asistente de Normativa con IA (RAG)
 
-![Java](https://img.shields.io/badge/Java-17-orange) ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-4.1-green) ![Spring AI](https://img.shields.io/badge/Spring%20AI-2.0-brightgreen) ![Tests](https://img.shields.io/badge/tests-11%20passing-success)
+[![CI](https://github.com/304bxnjvv/compliance-rag/actions/workflows/ci.yml/badge.svg)](https://github.com/304bxnjvv/compliance-rag/actions) ![Java](https://img.shields.io/badge/Java-17-orange) ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-4.1-green) ![Spring AI](https://img.shields.io/badge/Spring%20AI-2.0-brightgreen) ![Tests](https://img.shields.io/badge/tests-13%20passing-success)
 
 Asistente backend que responde preguntas en lenguaje natural sobre documentos
 (regulaciones, políticas, manuales) **citando la fuente exacta** y basándose
