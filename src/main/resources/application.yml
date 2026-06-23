@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: compliance-rag
+
+  # Límite de subida de PDFs
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 20MB
+
+  ai:
+    # --- Chat LLM: DeepSeek ---
+    deepseek:
+      api-key: ${DEEPSEEK_API_KEY}
+      chat:
+        model: deepseek-chat
+        # Temperatura baja = respuestas precisas y fieles al documento (clave en compliance)
+        temperature: 0.1
+
+    # --- Embeddings: Google Gemini (free tier) ---
+    google:
+      genai:
+        embedding:
+          api-key: ${GEMINI_API_KEY}
+          text:
+            model: text-embedding-004
+
+# --- Configuración propia del RAG ---
+rag:
+  top-k: 4              # nº de fragmentos relevantes a recuperar por pregunta
+  chunk-size: 800       # tamaño aprox. de cada fragmento
+  chunk-overlap: 100    # solape entre fragmentos para no cortar ideas
