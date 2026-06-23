@@ -33,9 +33,11 @@ Estado: ✅ **MVP funcional, probado end-to-end.** Stack: Java 17 · Spring Boot
 - [x] Sub-chunking de páginas largas (`TokenTextSplitter`, corta en fin de oración)
 - [ ] Persistir el índice a archivo (no re-indexar al reiniciar)
 
-## Fase 4 — pgvector real (post-MVP)
-- [ ] Migrar a Supabase (Postgres + pgvector)
-- **Hecho cuando:** el índice vive en un vector DB real.
+## Fase 4 — pgvector real ✅
+- [x] Postgres + pgvector en Supabase vía perfil `pg` (`run-pg.ps1`)
+- [x] `VectorStoreConfig` con `@Profile("!pg")`: memoria por defecto, PgVectorStore con perfil `pg`
+- [x] Probado E2E: CV indexado en Supabase + pregunta con citas
+- **Hecho:** el índice vive en un vector DB real. ✅
 
 ---
 **Tests: 13 verdes** · Probado end-to-end con DeepSeek + Gemini · Swagger UI activo.

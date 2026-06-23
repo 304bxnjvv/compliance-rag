@@ -114,6 +114,11 @@ La API queda disponible en **http://localhost:8080**.
 
 📖 **Documentación interactiva (Swagger UI):** http://localhost:8080/swagger-ui/index.html
 
+**Con vector DB real (Postgres + pgvector):** añade `POSTGRES_URL`, `POSTGRES_USER` y
+`POSTGRES_PASSWORD` al `.env` (ej. una base de [Supabase](https://supabase.com) con la
+extensión `vector` activada) y arranca con `./run-pg.ps1` — activa el perfil `pg` y usa
+pgvector en lugar del store en memoria, sin cambiar nada de la lógica.
+
 ---
 
 ## 📡 Uso de la API
@@ -185,8 +190,9 @@ tests (usan mocks).
 
 - [x] Fase 1 — Ingesta de PDFs (parseo, embeddings, indexado)
 - [x] Fase 2 — RAG con citas (`/ask`)
-- [ ] Fase 3 — Manejo de errores, Swagger/OpenAPI, persistencia del índice
-- [ ] Fase 4 — Migración a **pgvector** (Postgres) como vector store real
+- [x] Fase 3 — Manejo de errores, validación, Swagger/OpenAPI, CI
+- [x] Fase 4 — **pgvector** (Postgres/Supabase) como vector store real
+- [ ] Mejoras: persistencia del índice en memoria, streaming de respuestas, UI de chat
 
 Ver [docs/PLAN.md](docs/PLAN.md) para el detalle.
 
