@@ -2,6 +2,7 @@ package cl.brodriguez.compliancerag.ingestion;
 
 import org.springframework.ai.document.Document;
 import org.springframework.ai.vectorstore.VectorStore;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.List;
  * Orquesta la ingesta de un documento: lo parsea en fragmentos, los indexa en el
  * vector store y lleva registro de los documentos cargados.
  */
+@Service
 public class IngestionService {
 
     private final DocumentParser parser;
