@@ -30,8 +30,8 @@ Estado: ✅ **MVP funcional, probado end-to-end.** Stack: Java 17 · Spring Boot
 - [x] Manejo de errores (`@RestControllerAdvice`): PDF inválido → 400 limpio
 - [x] Validación de entrada (`@NotBlank` en /ask): pregunta vacía → 400
 - [x] Swagger / OpenAPI (springdoc 3) → `/swagger-ui`
+- [x] Sub-chunking de páginas largas (`TokenTextSplitter`, corta en fin de oración)
 - [ ] Persistir el índice a archivo (no re-indexar al reiniciar)
-- [ ] Sub-chunking de páginas largas (TokenTextSplitter)
 
 ## Fase 4 — pgvector real (post-MVP)
 - [ ] Migrar a Supabase (Postgres + pgvector)
